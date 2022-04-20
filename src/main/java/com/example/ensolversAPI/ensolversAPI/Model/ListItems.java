@@ -1,6 +1,5 @@
 package com.example.ensolversAPI.ensolversAPI.Model;
 
-import javax.persistence.OneToMany;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -8,7 +7,6 @@ public class ListItems {
     private Long id;
     private String name;
     private LocalDate date;
-    @OneToMany
     private List <Item> list;
 
     public ListItems() {

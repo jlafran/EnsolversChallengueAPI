@@ -8,7 +8,7 @@ public class Item {
     private LocalDate date;
 
     public Item() {
-        
+
     }
 
     public Item(Long id, String name, LocalDate date) {
@@ -41,7 +41,7 @@ public class Item {
         return date;
     }
 
-    public void setDate() {
+    public void setDate(LocalDate date) {
         this.date = LocalDate.now();
     }
 
