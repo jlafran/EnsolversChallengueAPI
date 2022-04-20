@@ -1,12 +1,27 @@
 package com.example.ensolversAPI.ensolversAPI.Model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
+@Entity
+@Table
 public class ListItems {
+    @Id
+    @SequenceGenerator(
+            name="listItems_sequence",
+            sequenceName = "listItems_sequence",
+            allocationSize = 1
+    )
+
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "listItems_sequence"
+    )
     private Long id;
     private String name;
     private LocalDate date;
+    @OneToMany
     private List <Item> list;
 
     public ListItems() {
