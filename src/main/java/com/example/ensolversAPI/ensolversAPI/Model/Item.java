@@ -8,6 +8,7 @@ public class Item {
     private LocalDate date;
 
     public Item() {
+        
     }
 
     public Item(Long id, String name, LocalDate date) {
