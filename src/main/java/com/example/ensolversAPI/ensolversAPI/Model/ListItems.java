@@ -1,7 +1,10 @@
 package com.example.ensolversAPI.ensolversAPI.Model;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -20,14 +23,15 @@ public class ListItems {
     )
     private Long id;
     private String name;
-    private LocalDate date;
+    @CreationTimestamp
+    private LocalDateTime date;
     @OneToMany
     private List <Item> list;
 
     public ListItems() {
     }
 
-    public ListItems(Long id, String name, LocalDate date, List<Item> list) {
+    public ListItems(Long id, String name, LocalDateTime date, List<Item> list) {
         this.id = id;
         this.name = name;
         this.date = date;
@@ -55,12 +59,12 @@ public class ListItems {
         this.name = name;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
     public void setDate() {
-        this.date = LocalDate.now();
+        this.date = LocalDateTime.now();
     }
 
     public List<Item> getList() {

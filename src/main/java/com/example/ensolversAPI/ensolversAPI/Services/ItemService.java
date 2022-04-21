@@ -56,4 +56,13 @@ public class ItemService {
             item.setName(name);
         }
     }
+
+    public Optional<Item> getItem(Long itemId) {
+        if (itemRepository.findById(itemId).isEmpty()) {
+             throw new IllegalStateException(
+                    "item with id: " + itemId + " doesn't exist"
+            );
+        }
+        return itemRepository.findById(itemId);
+    }
 }
