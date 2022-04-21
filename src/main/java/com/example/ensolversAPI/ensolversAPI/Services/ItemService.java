@@ -58,9 +58,10 @@ public class ItemService {
     }
 
     public Optional<Item> getItem(Long itemId) {
-        if (itemRepository.findById(itemId).isEmpty()) {
-             throw new IllegalStateException(
-                    "item with id: " + itemId + " doesn't exist"
+        boolean exists = itemRepository.existsById(itemId);
+        if(!exists){
+            throw new IllegalStateException(
+                    "item with id: "+ itemId +" does not exist"
             );
         }
         return itemRepository.findById(itemId);

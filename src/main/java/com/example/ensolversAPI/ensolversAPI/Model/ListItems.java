@@ -38,6 +38,10 @@ public class ListItems {
         this.list = list;
     }
 
+    public ListItems(String name) {
+        this.name = name;
+    }
+
     public ListItems(String name, List<Item> list) {
         this.name = name;
         this.list = list;

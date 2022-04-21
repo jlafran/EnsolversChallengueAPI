@@ -52,9 +52,9 @@ public class ListItemsController {
     }
 
 
-    @GetMapping
-    public List<Item> getItems(){
-        return listItemsService.getItems();
+    @GetMapping(path = "{listItemsId}")
+    public List<Item> getItems(@PathVariable("listItemsId") Long listItemsId){
+        return listItemsService.getItems(listItemsId);
     }
 
     @PostMapping
