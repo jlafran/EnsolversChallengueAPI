@@ -1,7 +1,9 @@
 package com.example.ensolversAPI.ensolversAPI.Model;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table
@@ -19,13 +21,13 @@ public class Item {
     )
     private Long id;
     private String name;
-    private LocalDate date;
+    @CreationTimestamp
+    private LocalDateTime date;
 
     public Item() {
-
     }
 
-    public Item(Long id, String name, LocalDate date) {
+    public Item(Long id, String name, LocalDateTime date) {
         this.id = id;
         this.name = name;
         this.date = date;
@@ -51,12 +53,12 @@ public class Item {
         this.name = name;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = LocalDate.now();
+    public void setDate(LocalDateTime date) {
+        this.date = date;
     }
 
     @Override

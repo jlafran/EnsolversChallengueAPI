@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Configuration
@@ -17,9 +19,7 @@ public class ItemConfig {
     CommandLineRunner commandLineRunner(ItemRepository repository){
         return args -> {
                     Item first = new Item(
-                            1L,
-                            "First Item",
-                            LocalDate.of(2000, Month.JANUARY,2)
+                            "First Item"
                     );
 
                     Item second = new Item(
