@@ -2,6 +2,7 @@ package com.example.ensolversAPI.ensolversAPI.Controllers;
 
 import com.example.ensolversAPI.ensolversAPI.Model.Item;
 import com.example.ensolversAPI.ensolversAPI.Model.ListItems;
+import com.example.ensolversAPI.ensolversAPI.Services.ItemService;
 import com.example.ensolversAPI.ensolversAPI.Services.ListItemsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,7 @@ public class ListItemsController {
     private final ListItemsService listItemsService;
 
     @Autowired
-    public ListItemsController(ListItemsService listItemsService) {
+    public ListItemsController(ListItemsService listItemsService, ItemService itemService) {
         this.listItemsService = listItemsService;
     }
 
@@ -52,25 +53,15 @@ public class ListItemsController {
     }
 
 
-    @GetMapping(path = "{listItemsId}")
+    @GetMapping(path = "/{listItemsId}/item")
     public List<Item> getItems(@PathVariable("listItemsId") Long listItemsId){
         return listItemsService.getItems(listItemsId);
     }
 
-    @PostMapping
-    public void addNewItem(@RequestParam(required = true) String name){
-        listItemsService.addNewItem(name);
+    @PostMapping(path = "/{listItemsId}/item")
+    public void addNewItem(@PathVariable("listItemsId") Long listItemsId,
+    @RequestBody(required = true) Item item){
+        listItemsService.addNewItem(listItemsId,item);
     }
-
-    @PutMapping(path = "{itemId}")
-    public void updateItem(@PathVariable("itemId") Long itemId) {
-        listItemsService.updateItem(itemId);
-    }
-
-    @DeleteMapping(path = "{itemId}")
-    public void  deleteItem(@PathVariable("itemId") Long itemId){
-        listItemsService.deleteItem(itemId);
-    }
-
 
 }

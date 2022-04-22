@@ -15,19 +15,5 @@ import java.util.List;
 @Configuration
 public class ItemConfig {
 
-    @Bean
-    CommandLineRunner commandLineRunner(ItemRepository repository){
-        return args -> {
-                    Item first = new Item(
-                            "First Item"
-                    );
 
-                    Item second = new Item(
-                    "Second Item"
-                    );
-                    repository.saveAll(
-                            List.of(first,second)
-                    );
-        };
-    }
 }

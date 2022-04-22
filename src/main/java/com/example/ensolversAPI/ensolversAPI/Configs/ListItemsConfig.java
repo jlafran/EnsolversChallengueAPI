@@ -2,6 +2,7 @@ package com.example.ensolversAPI.ensolversAPI.Configs;
 
 import com.example.ensolversAPI.ensolversAPI.Model.Item;
 import com.example.ensolversAPI.ensolversAPI.Model.ListItems;
+import com.example.ensolversAPI.ensolversAPI.Repositories.ItemRepository;
 import com.example.ensolversAPI.ensolversAPI.Repositories.ListItemsRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -16,12 +17,16 @@ public class ListItemsConfig {
     CommandLineRunner commandLineRunner(ListItemsRepository repository){
         return args -> {
             ListItems first = new ListItems(
-                    "First List"
+                    "First Item"
             );
-            
+
+            ListItems second = new ListItems(
+                    "Second Item"
+            );
             repository.saveAll(
-                    List.of(first)
+                    List.of(first,second)
             );
         };
     }
+
 }

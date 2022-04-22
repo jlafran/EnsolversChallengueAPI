@@ -15,10 +15,12 @@ import java.util.Optional;
 public class ListItemsService {
 
     private final ListItemsRepository listItemsRepository;
+    private final ItemService itemService;
 
     @Autowired
-    public ListItemsService(ListItemsRepository listItemsRepository) {
+    public ListItemsService(ListItemsRepository listItemsRepository, ItemService itemService) {
         this.listItemsRepository = listItemsRepository;
+        this.itemService = itemService;
     }
 
     public List<ListItems> getListsItems() {
@@ -36,6 +38,7 @@ public class ListItemsService {
     }
 
     public void addNewListItems(ListItems listItems) {
+        System.out.println(listItems);
         listItemsRepository.save(listItems);
     }
 
@@ -71,15 +74,22 @@ public class ListItemsService {
 
         return listItems.getList();
     }
+    @Transactional
+    public void addNewItem(Long listItemsId, Item item) {
+        ListItems listItems=listItemsRepository.findById(listItemsId)
+                .orElseThrow(()-> new IllegalStateException(
+                        "List of Items with id: " + listItemsId + " doesn't exist"
+                ));
 
-    public void addNewItem(String name) {
-    }
+        if (item.getName()!=null &&
+                item.getName().length()>0){
 
-    public void updateItem(Long itemId) {
+            itemService.addNewItem(item);
 
-    }
-
-    public void deleteItem(Long itemId) {
+            List<Item> newList= listItems.getList();
+            newList.add(item);
+            listItems.setList(newList);
+        }
 
     }
 }
