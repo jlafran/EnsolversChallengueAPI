@@ -63,5 +63,10 @@ public class ListItemsController {
     @RequestBody(required = true) Item item){
         listItemsService.addNewItem(listItemsId,item);
     }
+    @DeleteMapping(path = "/{listItemsId}/item/{itemId}")
+    public void deleteItem(@PathVariable("listItemsId") Long listItemsId,
+                           @PathVariable("itemId") Long itemId){
+        listItemsService.deleteItem(listItemsId,itemId);
+    }
 
 }

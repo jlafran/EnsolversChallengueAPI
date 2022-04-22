@@ -92,5 +92,17 @@ public class ListItemsService {
         }
 
     }
+
+    @Transactional
+    public void deleteItem(Long listItemsId, Long itemId) {
+        ListItems listItems=listItemsRepository.findById(listItemsId)
+                .orElseThrow(()-> new IllegalStateException(
+                        "List of Items with id: " + listItemsId + " doesn't exist"
+                ));
+        List<Item> newList= listItems.getList();
+        newList.removeIf(item -> item.getId()==itemId);
+        listItems.setList(newList);
+        itemService.deleteItem(itemId);
+    }
 }
 

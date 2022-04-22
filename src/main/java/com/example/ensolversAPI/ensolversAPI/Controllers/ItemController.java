@@ -26,10 +26,10 @@ public class ItemController {
         return itemService.getItems();
     }
 
-    @GetMapping(path = "{listItemsId}")
-    public Optional<Item> getItem(@PathVariable("listItemsId") Long listItemsId){
+    @GetMapping(path = "{itemId}")
+    public Optional<Item> getItem(@PathVariable("itemId") Long itemId){
 
-        return itemService.getItem(listItemsId);
+        return itemService.getItem(itemId);
     }
 
 
@@ -43,7 +43,7 @@ public class ItemController {
         itemService.deleteItem(itemId);
     }
 
-    @PutMapping(path = "item/{itemId}")
+    @PutMapping(path = "{itemId}")
     public void updateItem(
             @PathVariable("itemId") Long itemId,
             @RequestParam(required = false)String name){
