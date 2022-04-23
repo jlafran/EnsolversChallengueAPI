@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class Item {
     @Id
     @SequenceGenerator(
-            name="item_sequence",
+            name = "item_sequence",
             sequenceName = "item_sequence",
             allocationSize = 1
     )

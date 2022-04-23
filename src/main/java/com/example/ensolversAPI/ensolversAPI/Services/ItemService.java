@@ -34,9 +34,9 @@ public class ItemService {
 
     public void deleteItem(Long itemId) {
         boolean exists = itemRepository.existsById(itemId);
-        if(!exists){
+        if (!exists) {
             throw new IllegalStateException(
-                    "item with id: "+ itemId +" does not exist"
+                    "item with id: " + itemId + " does not exist"
             );
         }
         itemRepository.deleteById(itemId);
@@ -46,22 +46,22 @@ public class ItemService {
     @Transactional
     public void updateItem(Long itemId,
                            String name) {
-        Item item= itemRepository.findById(itemId)
-                .orElseThrow(()-> new IllegalStateException(
-                        "item with id: "+itemId+" doesn't exist"
+        Item item = itemRepository.findById(itemId)
+                .orElseThrow(() -> new IllegalStateException(
+                        "item with id: " + itemId + " doesn't exist"
                 ));
-        if (name!=null &&
-        name.length()>0 &&
-        !Objects.equals(item.getName(),name)){
+        if (name != null &&
+                name.length() > 0 &&
+                !Objects.equals(item.getName(), name)) {
             item.setName(name);
         }
     }
 
     public Optional<Item> getItem(Long itemId) {
         boolean exists = itemRepository.existsById(itemId);
-        if(!exists){
+        if (!exists) {
             throw new IllegalStateException(
-                    "item with id: "+ itemId +" does not exist"
+                    "item with id: " + itemId + " does not exist"
             );
         }
         return itemRepository.findById(itemId);

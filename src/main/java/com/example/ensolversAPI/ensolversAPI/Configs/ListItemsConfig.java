@@ -14,7 +14,7 @@ import java.util.List;
 public class ListItemsConfig {
 
     @Bean
-    CommandLineRunner commandLineRunner(ListItemsRepository repository){
+    CommandLineRunner commandLineRunner(ListItemsRepository repository) {
         return args -> {
             ListItems first = new ListItems(
                     "First Item"
@@ -24,7 +24,7 @@ public class ListItemsConfig {
                     "Second Item"
             );
             repository.saveAll(
-                    List.of(first,second)
+                    List.of(first, second)
             );
         };
     }

@@ -12,7 +12,7 @@ import java.util.List;
 public class ListItems {
     @Id
     @SequenceGenerator(
-            name="listItems_sequence",
+            name = "listItems_sequence",
             sequenceName = "listItems_sequence",
             allocationSize = 1
     )
@@ -26,7 +26,7 @@ public class ListItems {
     @CreationTimestamp
     private LocalDateTime date;
     @OneToMany
-    private List <Item> list;
+    private List<Item> list;
 
     public ListItems() {
     }

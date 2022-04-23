@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping(path = "api/item")
 public class ItemController {
 
@@ -21,32 +22,32 @@ public class ItemController {
     }
 
     @GetMapping
-    public List<Item> getItems(){
+    public List<Item> getItems() {
 
         return itemService.getItems();
     }
 
     @GetMapping(path = "{itemId}")
-    public Optional<Item> getItem(@PathVariable("itemId") Long itemId){
+    public Optional<Item> getItem(@PathVariable("itemId") Long itemId) {
 
         return itemService.getItem(itemId);
     }
 
 
     @PostMapping
-    public void registerItem(@RequestBody Item item){
+    public void registerItem(@RequestBody Item item) {
         itemService.addNewItem(item);
     }
 
     @DeleteMapping(path = "{itemId}")
-    public void  deleteItem(@PathVariable("itemId") Long itemId){
+    public void deleteItem(@PathVariable("itemId") Long itemId) {
         itemService.deleteItem(itemId);
     }
 
     @PutMapping(path = "{itemId}")
     public void updateItem(
             @PathVariable("itemId") Long itemId,
-            @RequestParam(required = false)String name){
-        itemService.updateItem(itemId,name);
+            @RequestParam(required = false) String name) {
+        itemService.updateItem(itemId, name);
     }
 }
